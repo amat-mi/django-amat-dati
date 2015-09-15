@@ -56,6 +56,9 @@ Attivare il virtualenv ed installare i requirements:
     cd /var/www/django/projects/django-amat-dati
     pip install -r requirements.txt
     deactivate
+
+__ATTENZIONE!!!__ Se qualcuna delle App contenute ha ulteriori requirements, bisogna fare il pip install -r requirements.txt
+di ognuna, prima di fare deactivate!!!
     
 Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere servite
 
