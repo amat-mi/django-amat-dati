@@ -57,6 +57,10 @@ Attivare il virtualenv ed installare i requirements:
     pip install -r requirements.txt
     deactivate
     
+Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere servite
+
+    echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati/lib/python2.7/site-packages/tweet.pth
+        
 ISTRUZIONI INCOMPLETE, DA CONTINUARE!!!
 
 ## Database
