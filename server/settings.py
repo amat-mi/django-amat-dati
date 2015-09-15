@@ -126,7 +126,9 @@ else:
       'default': {
 #           'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
           'ENGINE': 'django.contrib.gis.db.backends.postgis',
-          'NAME': 'django_amatdati',                      # Or path to database file if using sqlite3.
+# PAOLO - Per ora uso il nome del vecchio database già esistente, perché non ho la permission per rinominarlo!!!           
+#           'NAME': 'django_amatdati',                      # Or path to database file if using sqlite3.
+          'NAME': 'django_atmtweet',                      # Or path to database file if using sqlite3.
           'USER': 'django',                      # Not used with sqlite3.
           'PASSWORD': 'djangopass',                  # Not used with sqlite3.
           'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
