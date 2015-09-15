@@ -1,0 +1,7 @@
+# Questi sono di base per tutti
+Django>=1.8
+psycopg2>=2.5.2
+djangorestframework>=3.2.3
+
+# Questi sono per atm-tweet-server.tweet
+django-filter>=0.9.2
