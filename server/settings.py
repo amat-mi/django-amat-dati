@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'rest_framework',       
    ############
     'tweet',
+    'park_server_core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -198,7 +199,7 @@ STATICFILES_DIRS = (
     #PAOLO - Serviamo anche le eventuali UI Client delle varie App, ognuna con un diverso prefisso
     #WARN!!! Sarebbe bello se ogni App "aggiungesse" automaticamente qui la sua directory!!! 
     ('tweet',os.path.abspath(os.path.join(PROJECT_PATH, '..', '..', 'atm-tweet-client/www'))),    
-#     ('rtpark',os.path.abspath(os.path.join(PROJECT_PATH, '..', '..', 'park-client/www'))),    
+#     ('park',os.path.abspath(os.path.join(PROJECT_PATH, '..', '..', 'park-client/www'))),    
 )
 
 # List of finder classes that know how to find static files in

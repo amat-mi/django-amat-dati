@@ -60,7 +60,9 @@ Attivare il virtualenv ed installare i requirements:
 Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere servite
 
     echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati/lib/python2.7/site-packages/tweet.pth
-        
+    
+    echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati/lib/python2.7/site-packages/park_server_core.pth
+            
 ISTRUZIONI INCOMPLETE, DA CONTINUARE!!!
 
 ## Database

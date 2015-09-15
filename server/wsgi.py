@@ -1,5 +1,5 @@
 """
-WSGI config for park_server project.
+WSGI config for django-amat-dati.server project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

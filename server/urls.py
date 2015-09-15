@@ -20,7 +20,7 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-#     url(r'^rtpark/', include('park_server_core.urls')),
+    url(r'^park/', include('park_server_core.urls')),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
