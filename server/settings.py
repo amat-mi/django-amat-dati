@@ -118,8 +118,14 @@ WSGI_APPLICATION = 'server.wsgi.application'
 if IS_DEVELOPMENT_MACHINE:
   DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#           'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+          'ENGINE': 'django.contrib.gis.db.backends.postgis',
+# PAOLO - In locale invece uso il nome che sarebbe giusto avere anche in remoto!!!           
+          'NAME': 'django_amatdati',                      # Or path to database file if using sqlite3.
+          'USER': 'django',                      # Not used with sqlite3.
+          'PASSWORD': 'djangopass',                  # Not used with sqlite3.
+          'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+          'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
   }
 else:
