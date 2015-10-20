@@ -245,6 +245,7 @@ REST_FRAMEWORK = {
     'MAX_PAGINATE_BY': 100,             # Maximum limit allowed when using `?page_size=xxx`.
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_PAGINATION_SERIALIZER_CLASS': 'tweet.pagination.CustomPaginationSerializer',
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
