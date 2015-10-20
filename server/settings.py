@@ -75,9 +75,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
      #PAOLO - Following is to use the Django REST Framework
     'rest_framework',       
+    #PAOLO - Following is for GeoDjango
+    'django.contrib.gis',             
    ############
     'tweet',
     'park_server_core',
+    'pinf',
 )
 
 MIDDLEWARE_CLASSES = (

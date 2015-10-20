@@ -23,6 +23,10 @@ urlpatterns += patterns('',
     url(r'^park/', include('park_server_core.urls')),
 )
 
+urlpatterns += patterns('',
+    url(r'^pinf/', include('pinf.urls')),
+)
+
 urlpatterns = format_suffix_patterns(urlpatterns)
 
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
