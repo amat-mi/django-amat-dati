@@ -19,17 +19,17 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-    url(r'^tweet/', include('tweet.urls')),
+    url(r'^tweet/', include('tweet.urls', namespace='tweet')),
     # Questa è l'URL per la UI Client (in remoto gestita direttamente dal Web Server)
     url(r'^tweet/client/', RedirectView.as_view(url='/static/tweet/index.html', permanent=False), name="tweet-client"),    
 )
 
 urlpatterns += patterns('',
-    url(r'^park/', include('park_server_core.urls')),
+    url(r'^park/', include('park_server_core.urls', namespace='park')),
 )
 
 urlpatterns += patterns('',
-    url(r'^pinf/', include('pinf.urls')),
+    url(r'^pinf/', include('pinf.urls', namespace='pinf')),
 )
 
 urlpatterns += patterns('',
@@ -38,6 +38,10 @@ urlpatterns += patterns('',
 
 # Format suffixes
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])
+
+urlpatterns += patterns('',
+    url(r'^docs/', include('rest_framework_swagger.urls')),
+)
 
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

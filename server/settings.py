@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
      #PAOLO - Following is to use the Django REST Framework
     'rest_framework',       
+    'rest_framework_swagger',
     #PAOLO - Following is for GeoDjango
     'django.contrib.gis',             
    ############
@@ -258,3 +259,40 @@ else:
 #     'DEFAULT_PAGINATION_SERIALIZER_CLASS': 'tweet.pagination.CustomPaginationSerializer',
 #     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 # }
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_RATES': {
+        'burst': '2/minute',
+        'sustained': '10/day',
+    }
+}
+
+SWAGGER_SETTINGS = {
+    'exclude_namespaces': ['pinf','tweet','park'],
+    'api_version': 'v1',
+    'api_path': '/',
+    'enabled_methods': [
+        'get'
+    ],
+    'api_key': '',
+    'is_authenticated': False,
+    'is_superuser': False,
+    'permission_denied_handler': None,
+    'resource_access_handler': None,
+    'info': {
+        'contact': 'apiteam@wordnik.com',
+        'description': 'This is a sample server Petstore server. '
+                       'You can find out more about Swagger at '
+                       '<a href="http://swagger.wordnik.com">'
+                       'http://swagger.wordnik.com</a> '
+                       'or on irc.freenode.net, #swagger. '
+                       'For this sample, you can use the api key '
+                       '"special-key" to test '
+                       'the authorization filters',
+        'license': 'Apache 2.0',
+        'licenseUrl': 'http://www.apache.org/licenses/LICENSE-2.0.html',
+        'termsOfServiceUrl': 'http://helloreverb.com/terms/',
+        'title': 'Swagger Sample App',
+    },
+    'doc_expansion': 'none',
+}
