@@ -33,7 +33,7 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-    url(r'^open/', include('open.urls')),
+    url(r'^open/', include('open.urls', namespace='open')),
 )
 
 # Format suffixes
