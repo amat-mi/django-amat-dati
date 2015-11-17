@@ -13,6 +13,11 @@ urlpatterns = patterns('',
 #     url(r'^docs/', include('rest_framework_swagger.urls')),
 )
 
+# Default login/logout views
+urlpatterns += patterns('',
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+)
+
 urlpatterns += patterns('',
     url(r'^tweet/', include('tweet.urls')),
     # Questa è l'URL per la UI Client (in remoto gestita direttamente dal Web Server)

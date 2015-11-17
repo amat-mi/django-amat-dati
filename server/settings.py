@@ -51,6 +51,9 @@ if IS_DEVELOPMENT_MACHINE:
 else:
   FORCE_SCRIPT_NAME = ''
 
+# ATTENZIONE!!! Non funziona se FORCE_SCRIPT_NAME impostato a qualcosa!!!                     
+LOGIN_REDIRECT_URL = FORCE_SCRIPT_NAME + '/'          #go to Home Page after Signin
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '01$k%#yn+rb_z_+o&!p3is4y$=r__hpdnk$0xmm1zl3b4lu8s_'
 
