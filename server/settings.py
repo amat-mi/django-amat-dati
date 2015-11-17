@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'tweet',
     'park_server_core',
     'pinf',
+    'open',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -32,6 +32,10 @@ urlpatterns += patterns('',
     url(r'^pinf/', include('pinf.urls')),
 )
 
+urlpatterns += patterns('',
+    url(r'^open/', include('open.urls')),
+)
+
 # Format suffixes
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])
 
