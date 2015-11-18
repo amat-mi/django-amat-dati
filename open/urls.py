@@ -3,20 +3,17 @@
 from django.conf.urls import patterns, url, include
 from rest_framework.routers import SimpleRouter
 
-from open.views import OpenSostaMerciViewSet, OpenSostaViewSet
-from pinf.views import PinfSostaGiallobluViewSet, PinfSostaInvalidiViewSet, \
-  PinfSostaMerciViewSet, PinfSostaTuristiciViewSet
+from open.views import OpenSostaGiallobluViewSet, OpenSostaInvalidiViewSet, OpenSostaMerciViewSet, \
+  OpenSostaTuristiciViewSet
 
 
 router = SimpleRouter()
 
 ##### Elenco endpoints ################################
-router.register(r'sosta_gialloblu', PinfSostaGiallobluViewSet)
-router.register(r'sosta_invalidi', PinfSostaInvalidiViewSet)
+router.register(r'sosta_gialloblu', OpenSostaGiallobluViewSet)
+router.register(r'sosta_invalidi', OpenSostaInvalidiViewSet)
 router.register(r'sosta_merci', OpenSostaMerciViewSet)
-router.register(r'sosta_turistici', PinfSostaTuristiciViewSet)
-
-router.register(r'sosta', OpenSostaViewSet, base_name='sosta')
+router.register(r'sosta_turistici', OpenSostaTuristiciViewSet)
 
 ##### Aggiunta degli url ####################################
 urlpatterns =  patterns('',

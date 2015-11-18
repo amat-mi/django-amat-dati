@@ -262,8 +262,8 @@ else:
 
 REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
-        'burst': '2/minute',
-        'sustained': '10/day',
+        'burst': '4/minute',
+        'sustained': '96/day',
     }
 }
 
