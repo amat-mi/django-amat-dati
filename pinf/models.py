@@ -8,6 +8,15 @@ from django.dispatch.dispatcher import receiver
 
 
 #################################################
+class PinfTopoViario(models.Model):
+  id = models.IntegerField(primary_key=True)
+  nome = models.CharField(max_length=250, blank=True, null=True)
+
+  class Meta:
+    managed = False
+    db_table = 'pinf_new_amat_topo_viario'
+
+#################################################
 class PinfSosta(models.Model):
   id = models.IntegerField(primary_key=True)
   tipo = models.CharField(max_length=80)

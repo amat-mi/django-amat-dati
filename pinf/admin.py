@@ -3,7 +3,7 @@
 from django.contrib.gis import admin
 from django.contrib.gis.geos.geometry import GEOSGeometry
 
-from pinf.models import PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
+from pinf.models import PinfTopoViario, PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
   PinfSostaTuristici
 
 
@@ -30,6 +30,11 @@ class GMapsAdmin(admin.OSMGeoAdmin):
   openlayers_url = 'http://openlayers.org/api/2.13.1/OpenLayers.js'
   extra_js = ["http://maps.google.com/maps/api/js?v=3&sensor=false&region=IT&language=it"]
   map_template = 'gis/admin/gmaps.html'
+
+#################################################
+class PinfTopoViarioAdmin(BaseAdmin):
+  pass
+admin.site.register(PinfTopoViario,PinfTopoViarioAdmin)
 
 #################################################
 class PinfSostaGiallobluAdmin(GMapsAdmin):
