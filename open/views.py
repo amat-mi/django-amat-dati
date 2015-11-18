@@ -1,8 +1,10 @@
 # coding: utf-8
 
 from rest_framework import filters
+from rest_framework.decorators import detail_route
 from rest_framework.throttling import UserRateThrottle
 
+from open.serializers import OpenTopoViarioSostaSerializer
 from pinf.views import PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
   PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet
 
@@ -40,7 +42,9 @@ class SostaFilterMixin(object):
 
 #################################################
 class OpenTopoViarioViewSet(ThrottledMixin,TopoFilterMixin,PinfTopoViarioViewSet):
-  pass
+    @detail_route(serializer_class=OpenTopoViarioSostaSerializer)
+    def sosta(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 #################################################
 class OpenSostaGiallobluViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaGiallobluViewSet):

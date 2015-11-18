@@ -12,6 +12,7 @@ class PinfTopoViarioSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfTopoViario
+    fields = ['id','nome']
 
 #################################################
 class PinfSostaGiallobluSerializer(serializers.ModelSerializer):
