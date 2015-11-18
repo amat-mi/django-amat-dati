@@ -3,6 +3,4 @@ Django>=1.8
 psycopg2>=2.5.2
 djangorestframework>=3.2.3
 django-rest-swagger>=0.3.4
-
-# Questi sono per atm-tweet-server.tweet
 django-filter>=0.9.2

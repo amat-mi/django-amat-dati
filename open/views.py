@@ -1,5 +1,5 @@
 # coding: utf-8
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.decorators import list_route, throttle_classes, detail_route
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -73,6 +73,9 @@ class OpenSostaViewSet(viewsets.GenericViewSet):
     serializer_class = PinfSostaGiallobluSerializer
 #     queryset = PinfSostaMerci.objects.all()
     paginate_by = 10
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,)
+    filter_fields = ('tipo',)
+    search_fields = ('dove', '=id_via',)
 
     def _list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -127,7 +130,7 @@ class OpenSostaViewSet(viewsets.GenericViewSet):
         serializer_class = PinfSostaTuristiciSerializer,
         queryset = PinfSostaTuristici.objects.all(),
         paginate_by = None,
-        throttle_classes = ()
+        throttle_classes = (),
                 )
     def turistici(self, request, *args, **kwargs):
         return self._list(request, *args, **kwargs)
