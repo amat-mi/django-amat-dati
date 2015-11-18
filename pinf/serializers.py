@@ -2,9 +2,16 @@
 
 from rest_framework import serializers
 
-from pinf.models import PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
+from pinf.models import PinfTopoViario, PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
   PinfSostaTuristici
 
+
+#################################################
+class PinfTopoViarioSerializer(serializers.ModelSerializer):
+  pass
+
+  class Meta:
+    model = PinfTopoViario
 
 #################################################
 class PinfSostaGiallobluSerializer(serializers.ModelSerializer):

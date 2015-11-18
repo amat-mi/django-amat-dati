@@ -3,7 +3,7 @@
 from rest_framework import filters
 from rest_framework.throttling import UserRateThrottle
 
-from pinf.views import PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
+from pinf.views import PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
   PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet
 
 
@@ -25,26 +25,37 @@ class ThrottledMixin(object):
         return []
 
 #################################################
-class TopoFilteredMixin(object):
+class TopoFilterMixin(object):
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filter_fields = ('id',)
+    search_fields = ('nome',)
+    ordering_fields = ('id', 'nome')  
+
+#################################################
+class SostaFilterMixin(object):
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filter_fields = ('id_via',)
     search_fields = ('dove',)
     ordering_fields = ('id_via', 'dove')  
 
 #################################################
-class OpenSostaGiallobluViewSet(ThrottledMixin,TopoFilteredMixin,PinfSostaGiallobluViewSet):
+class OpenTopoViarioViewSet(ThrottledMixin,TopoFilterMixin,PinfTopoViarioViewSet):
   pass
 
 #################################################
-class OpenSostaInvalidiViewSet(ThrottledMixin,TopoFilteredMixin,PinfSostaInvalidiViewSet):
+class OpenSostaGiallobluViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaGiallobluViewSet):
   pass
 
 #################################################
-class OpenSostaMerciViewSet(ThrottledMixin,TopoFilteredMixin,PinfSostaMerciViewSet):
+class OpenSostaInvalidiViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaInvalidiViewSet):
   pass
 
 #################################################
-class OpenSostaTuristiciViewSet(ThrottledMixin,TopoFilteredMixin,PinfSostaTuristiciViewSet):
+class OpenSostaMerciViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaMerciViewSet):
+  pass
+
+#################################################
+class OpenSostaTuristiciViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaTuristiciViewSet):
   pass
 
 # #################################################
