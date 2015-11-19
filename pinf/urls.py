@@ -4,13 +4,15 @@ from django.conf.urls import patterns, url, include
 from rest_framework.routers import SimpleRouter
 
 from pinf.views import PinfTopoViarioViewSet, PinfSostaGiallobluViewSet, PinfSostaInvalidiViewSet, \
-  PinfSostaMerciViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet
+  PinfSostaMerciViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet,\
+  PinfTopoCiviciareeViewSet
 
 
 router = SimpleRouter()
 
 ##### Elenco endpoints ################################
 router.register(r'topo_viario', PinfTopoViarioViewSet)
+router.register(r'topo_civiciaree', PinfTopoCiviciareeViewSet)
 
 router.register(r'sosta_gialloblu', PinfSostaGiallobluViewSet)
 router.register(r'sosta_invalidi', PinfSostaInvalidiViewSet)

@@ -33,6 +33,18 @@ class PinfTopoViario(models.Model):
     db_table = 'pinf_new_amat_topo_viario'
 
 #################################################
+class PinfTopoCiviciaree(models.Model):
+    civico_id = models.IntegerField(primary_key=True)
+    area_id = models.IntegerField(primary_key=True)
+    tipo_area = models.CharField(max_length=80, blank=True, null=True)
+    nome_area = models.CharField(max_length=80, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pinf_new_amat_topo_civiciaree'
+        unique_together = (('civico_id', 'area_id'),)
+
+#################################################
 class PinfSosta(models.Model):
   id = models.IntegerField(primary_key=True)
   tipo = models.CharField(max_length=80)

@@ -4,9 +4,11 @@ from django.http.response import HttpResponse, HttpResponseBadRequest
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from pinf.models import PinfTopoViario, PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
+from pinf.models import PinfTopoViario, PinfTopoCiviciaree, \
+  PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
   PinfSostaTuristici, PinfControlloVarchi
-from pinf.serializers import PinfTopoViarioSerializer, PinfSostaGiallobluSerializer, \
+from pinf.serializers import PinfTopoViarioSerializer, PinfTopoCiviciareeSerializer, \
+  PinfSostaGiallobluSerializer, \
   PinfSostaInvalidiSerializer, PinfSostaMerciSerializer, \
   PinfSostaTuristiciSerializer, PinfControlloVarchiSerializer
 
@@ -31,6 +33,12 @@ def build_exception_response(error=RESPERR.GENERIC_ERROR,status=HttpResponseBadR
 class PinfTopoViarioViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfTopoViarioSerializer
     queryset = PinfTopoViario.objects.all()
+    paginate_by = None
+
+#################################################
+class PinfTopoCiviciareeViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PinfTopoCiviciareeSerializer
+    queryset = PinfTopoCiviciaree.objects.all()
     paginate_by = None
 
 #################################################
