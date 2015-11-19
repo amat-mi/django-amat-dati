@@ -4,9 +4,9 @@ from rest_framework import filters
 from rest_framework.decorators import detail_route
 from rest_framework.throttling import UserRateThrottle
 
-from open.serializers import OpenTopoViarioSostaSerializer
+from open.serializers import OpenTopoViarioSostaSerializer, OpenTopoViarioControlloSerializer
 from pinf.views import PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
-  PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet
+  PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet
 
 
 #################################################
@@ -27,39 +27,47 @@ class ThrottledMixin(object):
         return []
 
 #################################################
-class TopoFilterMixin(object):
+class TopoMasterFilterMixin(object):
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filter_fields = ('id',)
     search_fields = ('nome',)
     ordering_fields = ('id', 'nome')  
 
 #################################################
-class SostaFilterMixin(object):
+class TopoSlaveFilterMixin(object):
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filter_fields = ('id_via',)
     search_fields = ('dove',)
     ordering_fields = ('id_via', 'dove')  
 
 #################################################
-class OpenTopoViarioViewSet(ThrottledMixin,TopoFilterMixin,PinfTopoViarioViewSet):
+class OpenTopoViarioViewSet(ThrottledMixin,TopoMasterFilterMixin,PinfTopoViarioViewSet):
     @detail_route(serializer_class=OpenTopoViarioSostaSerializer)
     def sosta(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
+    @detail_route(serializer_class=OpenTopoViarioControlloSerializer)
+    def controllo(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
 #################################################
-class OpenSostaGiallobluViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaGiallobluViewSet):
+class OpenSostaGiallobluViewSet(ThrottledMixin,TopoSlaveFilterMixin,PinfSostaGiallobluViewSet):
   pass
 
 #################################################
-class OpenSostaInvalidiViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaInvalidiViewSet):
+class OpenSostaInvalidiViewSet(ThrottledMixin,TopoSlaveFilterMixin,PinfSostaInvalidiViewSet):
   pass
 
 #################################################
-class OpenSostaMerciViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaMerciViewSet):
+class OpenSostaMerciViewSet(ThrottledMixin,TopoSlaveFilterMixin,PinfSostaMerciViewSet):
   pass
 
 #################################################
-class OpenSostaTuristiciViewSet(ThrottledMixin,SostaFilterMixin,PinfSostaTuristiciViewSet):
+class OpenSostaTuristiciViewSet(ThrottledMixin,TopoSlaveFilterMixin,PinfSostaTuristiciViewSet):
+  pass
+
+#################################################
+class OpenControlloVarchiViewSet(ThrottledMixin,TopoSlaveFilterMixin,PinfControlloVarchiViewSet):
   pass
 
 # #################################################

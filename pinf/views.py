@@ -5,10 +5,10 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from pinf.models import PinfTopoViario, PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
-  PinfSostaTuristici
+  PinfSostaTuristici, PinfControlloVarchi
 from pinf.serializers import PinfTopoViarioSerializer, PinfSostaGiallobluSerializer, \
   PinfSostaInvalidiSerializer, PinfSostaMerciSerializer, \
-  PinfSostaTuristiciSerializer
+  PinfSostaTuristiciSerializer, PinfControlloVarchiSerializer
 
 
 #################################################
@@ -55,4 +55,10 @@ class PinfSostaMerciViewSet(viewsets.ReadOnlyModelViewSet):
 class PinfSostaTuristiciViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfSostaTuristiciSerializer
     queryset = PinfSostaTuristici.objects.all()
+    paginate_by = None
+
+#################################################
+class PinfControlloVarchiViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PinfControlloVarchiSerializer
+    queryset = PinfControlloVarchi.objects.all()
     paginate_by = None
