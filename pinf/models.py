@@ -57,7 +57,7 @@ u"""
 Aggiunge a PinfTopoViario un queryset che contiene le istanze nella stessa strada.
 """
 PinfTopoViario.sosta_gialloblu = property(lambda t: \
-  PinfSostaGialloblu.objects.filter(id_via=t.id) or None)          
+  PinfSostaGialloblu.objects.filter(id_via=t.id))          
     
 #################################################
 class PinfSostaInvalidi(PinfSostaPoint):
@@ -72,7 +72,7 @@ u"""
 Aggiunge a PinfTopoViario un queryset che contiene le istanze nella stessa strada.
 """
 PinfTopoViario.sosta_invalidi = property(lambda t: \
-  PinfSostaInvalidi.objects.filter(id_via=t.id) or None)          
+  PinfSostaInvalidi.objects.filter(id_via=t.id))          
     
 #################################################
 class PinfSostaMerci(PinfSostaPoint):
@@ -87,7 +87,7 @@ u"""
 Aggiunge a PinfTopoViario un queryset che contiene le istanze nella stessa strada.
 """
 PinfTopoViario.sosta_merci = property(lambda t: \
-  PinfSostaMerci.objects.filter(id_via=t.id) or None)          
+  PinfSostaMerci.objects.filter(id_via=t.id))          
     
 #################################################
 class PinfSostaTuristici(PinfSostaPoint):
@@ -104,5 +104,5 @@ u"""
 Aggiunge a PinfTopoViario un queryset che contiene le istanze nella stessa strada.
 """
 PinfTopoViario.sosta_turistici = property(lambda t: \
-  PinfSostaTuristici.objects.filter(id_via=t.id) or None)          
+  PinfSostaTuristici.objects.filter(id_via=t.id))          
     

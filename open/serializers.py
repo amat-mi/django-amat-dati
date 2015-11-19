@@ -7,10 +7,10 @@ from pinf.serializers import PinfTopoViarioSerializer, \
 
 #################################################
 class OpenTopoViarioSostaSerializer(PinfTopoViarioSerializer):
-  sosta_gialloblu = PinfSostaGiallobluSerializer()
-  sosta_invalidi = PinfSostaInvalidiSerializer()
-  sosta_merci = PinfSostaMerciSerializer()
-  sosta_turistici = PinfSostaTuristiciSerializer()
+  sosta_gialloblu = PinfSostaGiallobluSerializer(many=True)
+  sosta_invalidi = PinfSostaInvalidiSerializer(many=True)
+  sosta_merci = PinfSostaMerciSerializer(many=True)
+  sosta_turistici = PinfSostaTuristiciSerializer(many=True)
 
   class Meta:
     model = PinfTopoViario
