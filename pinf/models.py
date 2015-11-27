@@ -8,22 +8,6 @@ from django.dispatch.dispatcher import receiver
 
 
 #################################################
-class MultiLineMixin(object):
-  geom = geomodels.MultiLineStringField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
-
-  class Meta:
-    abstract = True
-
-#################################################
-class PointMixin(object):
-  geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
-
-  class Meta:
-    abstract = True
-
-#################################################
 class PinfTopoViario(models.Model):
   id = models.IntegerField(primary_key=True)
   nome = models.CharField(max_length=250, blank=True, null=True)
@@ -33,19 +17,21 @@ class PinfTopoViario(models.Model):
     db_table = 'pinf_new_amat_topo_viario'
 
 #################################################
-class PinfTopoCiviciaree(PointMixin,models.Model):
-    civico_id = models.IntegerField(primary_key=True)
-    area_id = models.IntegerField(primary_key=True)
-    tipo_area = models.CharField(max_length=80, blank=True, null=True)
-    nome_area = models.CharField(max_length=80, blank=True, null=True)
-    ordinanza = models.CharField(max_length=200, blank=True, null=True)
-    id_via = models.IntegerField(blank=True, null=True)
-    numero = models.CharField(max_length=20, blank=True, null=True)
+class PinfTopoCiviciaree(models.Model):
+  civico_id = models.IntegerField(primary_key=True)
+  area_id = models.IntegerField(primary_key=True)
+  tipo_area = models.CharField(max_length=80, blank=True, null=True)
+  nome_area = models.CharField(max_length=80, blank=True, null=True)
+  ordinanza = models.CharField(max_length=200, blank=True, null=True)
+  id_via = models.IntegerField(blank=True, null=True)
+  numero = models.CharField(max_length=20, blank=True, null=True)
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
-    class Meta:
-        managed = False
-        db_table = 'pinf_new_amat_topo_civiciaree'
-        unique_together = (('civico_id', 'area_id'),)
+  class Meta:
+    managed = False
+    db_table = 'pinf_new_amat_topo_civiciaree'
+    unique_together = (('civico_id', 'area_id'),)
 
 #################################################
 class PinfSosta(models.Model):
@@ -60,8 +46,9 @@ class PinfSosta(models.Model):
     abstract = True
 
 #################################################
-class PinfSostaGialloblu(MultiLineMixin,PinfSosta):
-  pass
+class PinfSostaGialloblu(PinfSosta):
+  geom = geomodels.MultiLineStringField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -75,8 +62,9 @@ PinfTopoViario.sosta_gialloblu = property(lambda t: \
   PinfSostaGialloblu.objects.filter(id_via=t.id))          
     
 #################################################
-class PinfSostaInvalidi(PointMixin,PinfSosta):
-  pass
+class PinfSostaInvalidi(PinfSosta):
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -90,8 +78,9 @@ PinfTopoViario.sosta_invalidi = property(lambda t: \
   PinfSostaInvalidi.objects.filter(id_via=t.id))          
     
 #################################################
-class PinfSostaMerci(PointMixin,PinfSosta):
-  pass
+class PinfSostaMerci(PinfSosta):
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -105,10 +94,12 @@ PinfTopoViario.sosta_merci = property(lambda t: \
   PinfSostaMerci.objects.filter(id_via=t.id))          
     
 #################################################
-class PinfSostaTuristici(PointMixin,PinfSosta):
+class PinfSostaTuristici(PinfSosta):
   orari = models.CharField(max_length=10, blank=True, null=True)
   euro_h = models.DecimalField(max_digits=38, decimal_places=34, blank=True, null=True)
   note = models.CharField(max_length=80, blank=True, null=True)
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -122,7 +113,7 @@ PinfTopoViario.sosta_turistici = property(lambda t: \
   PinfSostaTuristici.objects.filter(id_via=t.id))          
     
 #################################################
-class PinfControlloVarchi(PointMixin,models.Model):
+class PinfControlloVarchi(models.Model):
   id = models.IntegerField(primary_key=True)
   tipo = models.CharField(max_length=80)
   dove = models.CharField(max_length=80, blank=True, null=True)
@@ -132,6 +123,8 @@ class PinfControlloVarchi(PointMixin,models.Model):
   area_id = models.IntegerField(blank=True, null=True)
   tipo_area = models.CharField(max_length=80, blank=True, null=True)
   accesso = models.NullBooleanField()
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
   
   class Meta:
     managed = False
