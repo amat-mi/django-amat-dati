@@ -21,6 +21,7 @@ class PinfTopoCiviciareeSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfTopoCiviciaree
+    exclude = ['geom']        #NEVER SEND GEOMETRIES OF CIVICI (even if projected)!!!
 
 #################################################
 class PinfSostaGiallobluSerializer(serializers.ModelSerializer):
