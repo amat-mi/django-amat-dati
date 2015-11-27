@@ -33,13 +33,20 @@ def build_exception_response(error=RESPERR.GENERIC_ERROR,status=HttpResponseBadR
     return build_error_response(error,status,message=traceback.format_exc())
 
 #################################################
-class PinfTopoViarioViewSet(viewsets.ReadOnlyModelViewSet):
+class PinfPermissionMixin(object):
+    authentication_classes = [OAuth2Authentication]
+#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+    permission_classes = [TokenHasScope]
+    required_scopes = ['pinf']
+
+#################################################
+class PinfTopoViarioViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfTopoViarioSerializer
     queryset = PinfTopoViario.objects.all()
     paginate_by = None
 
 #################################################
-class PinfTopoCiviciareeViewSet(viewsets.ReadOnlyModelViewSet):
+class PinfTopoCiviciareeViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfTopoCiviciareeSerializer
     queryset = PinfTopoCiviciaree.objects.all()
     paginate_by = None
@@ -67,13 +74,9 @@ class PinfSostaTuristiciViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfSostaTuristiciSerializer
     queryset = PinfSostaTuristici.objects.all()
     paginate_by = None
-    authentication_classes = [OAuth2Authentication]
-#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
-    permission_classes = [TokenHasScope]
-    required_scopes = ['pinf']
 
 #################################################
-class PinfControlloVarchiViewSet(viewsets.ReadOnlyModelViewSet):
+class PinfControlloVarchiViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfControlloVarchiSerializer
     queryset = PinfControlloVarchi.objects.all()
     paginate_by = None

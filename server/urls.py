@@ -18,6 +18,11 @@ urlpatterns += patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 )
 
+# OAuth2 provider
+urlpatterns += patterns('',
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
+)
+
 urlpatterns += patterns('',
     url(r'^tweet/', include('tweet.urls', namespace='tweet')),
     # Questa è l'URL per la UI Client (in remoto gestita direttamente dal Web Server)

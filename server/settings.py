@@ -79,6 +79,8 @@ INSTALLED_APPS = (
      #PAOLO - Following is to use the Django REST Framework
     'rest_framework',       
     'rest_framework_swagger',
+     #PAOLO - Following is to implement an OAuth2 provider
+    'oauth2_provider',
     #PAOLO - Following is for GeoDjango
     'django.contrib.gis',             
    ############
@@ -86,6 +88,12 @@ INSTALLED_APPS = (
     'park_server_core',
     'pinf',
     'open',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'oauth2_provider.backends.OAuth2Backend',
+    # Uncomment following if you want to access the admin
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -97,6 +105,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    # If you use SessionAuthenticationMiddleware, be sure it appears before OAuth2TokenMiddleware.
+    # SessionAuthenticationMiddleware is NOT required for using django-oauth-toolkit.
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',    
 )
 
 ROOT_URLCONF = 'server.urls'
@@ -265,6 +276,12 @@ REST_FRAMEWORK = {
         'burst': '4/minute',
         'sustained': '96/day',
     }
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+#     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'pinf': 'Access to pinf APIs'}
+    'SCOPES': {'open': 'Access to open APIs', 'pinf': 'Access to pinf APIs'}
 }
 
 SWAGGER_SETTINGS = {
