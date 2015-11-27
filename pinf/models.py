@@ -33,11 +33,14 @@ class PinfTopoViario(models.Model):
     db_table = 'pinf_new_amat_topo_viario'
 
 #################################################
-class PinfTopoCiviciaree(models.Model):
+class PinfTopoCiviciaree(PointMixin,models.Model):
     civico_id = models.IntegerField(primary_key=True)
     area_id = models.IntegerField(primary_key=True)
     tipo_area = models.CharField(max_length=80, blank=True, null=True)
     nome_area = models.CharField(max_length=80, blank=True, null=True)
+    ordinanza = models.CharField(max_length=200, blank=True, null=True)
+    id_via = models.IntegerField(blank=True, null=True)
+    numero = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         managed = False

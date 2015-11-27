@@ -1,7 +1,10 @@
 # coding: utf-8
 
 from django.http.response import HttpResponse, HttpResponseBadRequest
-from rest_framework import viewsets
+from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
+from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import authentication_classes
 from rest_framework.response import Response
 
 from pinf.models import PinfTopoViario, PinfTopoCiviciaree, \
@@ -64,6 +67,10 @@ class PinfSostaTuristiciViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfSostaTuristiciSerializer
     queryset = PinfSostaTuristici.objects.all()
     paginate_by = None
+    authentication_classes = [OAuth2Authentication]
+#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+    permission_classes = [TokenHasScope]
+    required_scopes = ['pinf']
 
 #################################################
 class PinfControlloVarchiViewSet(viewsets.ReadOnlyModelViewSet):
