@@ -44,6 +44,9 @@ class TopoSlaveFilterMixin(object):
 
 #################################################
 class OpenPermissionMixin(object):
+    authentication_classes = [OAuth2Authentication]
+#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+    permission_classes = [TokenHasScope]
     required_scopes = ['open']
 
 #################################################
