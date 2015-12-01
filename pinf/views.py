@@ -41,7 +41,7 @@ class PinfPermissionMixin(object):
     required_scopes = ['pinf']
 
 #################################################
-class PinfDisciplinaAreeViewSet(viewsets.ReadOnlyModelViewSet):
+class PinfDisciplinaAreeViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfDisciplinaAreeSerializer
     queryset = PinfDisciplinaAree.objects.all()
     paginate_by = None
