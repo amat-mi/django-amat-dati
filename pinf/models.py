@@ -8,6 +8,20 @@ from django.dispatch.dispatcher import receiver
 
 
 #################################################
+class PinfDisciplinaAree(models.Model):
+  id = models.IntegerField(primary_key=True)
+  tipo = models.CharField(max_length=80, blank=True, null=True)
+  nome = models.CharField(max_length=80, blank=True, null=True)
+  ordinanza = models.CharField(max_length=200, blank=True, null=True)
+  deroghe = models.TextField(blank=True, null=True)
+  geom = geomodels.MultiPolygonField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+
+  class Meta:
+    managed = False
+    db_table = 'pinf_new_amat_disciplina_aree'
+
+#################################################
 class PinfTopoViario(models.Model):
   id = models.IntegerField(primary_key=True)
   nome = models.CharField(max_length=250, blank=True, null=True)

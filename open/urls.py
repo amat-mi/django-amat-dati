@@ -3,13 +3,16 @@
 from django.conf.urls import patterns, url, include
 from rest_framework.routers import SimpleRouter
 
-from open.views import OpenTopoViarioViewSet, OpenSostaGiallobluViewSet, OpenSostaInvalidiViewSet, \
+from open.views import OpenDisciplinaAreeViewSet, \
+  OpenTopoViarioViewSet, OpenSostaGiallobluViewSet, OpenSostaInvalidiViewSet, \
   OpenSostaMerciViewSet, OpenSostaTuristiciViewSet, OpenControlloVarchiViewSet
 
 
 router = SimpleRouter()
 
 ##### Elenco endpoints ################################
+router.register(r'disciplina_aree', OpenDisciplinaAreeViewSet)
+
 router.register(r'topo_viario', OpenTopoViarioViewSet)
 
 router.register(r'sosta_gialloblu', OpenSostaGiallobluViewSet)

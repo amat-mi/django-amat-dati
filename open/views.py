@@ -7,7 +7,8 @@ from rest_framework.decorators import detail_route
 from rest_framework.throttling import UserRateThrottle
 
 from open.serializers import OpenTopoViarioSostaSerializer, OpenTopoViarioControlloSerializer
-from pinf.views import PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
+from pinf.views import PinfDisciplinaAreeViewSet, \
+  PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
   PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet
 
 
@@ -48,6 +49,12 @@ class OpenPermissionMixin(object):
 #     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
     permission_classes = [TokenHasScope]
     required_scopes = ['open']
+
+#################################################
+class OpenDisciplinaAreeViewSet(ThrottledMixin,
+                                OpenPermissionMixin,
+                                PinfDisciplinaAreeViewSet):
+  pass
 
 #################################################
 class OpenTopoViarioViewSet(ThrottledMixin,TopoMasterFilterMixin,

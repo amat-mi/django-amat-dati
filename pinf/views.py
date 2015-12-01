@@ -7,10 +7,11 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import authentication_classes
 from rest_framework.response import Response
 
-from pinf.models import PinfTopoViario, PinfTopoCiviciaree, \
+from pinf.models import PinfDisciplinaAree, PinfTopoViario, PinfTopoCiviciaree, \
   PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
   PinfSostaTuristici, PinfControlloVarchi
-from pinf.serializers import PinfTopoViarioSerializer, PinfTopoCiviciareeSerializer, \
+from pinf.serializers import PinfDisciplinaAreeSerializer, \
+  PinfTopoViarioSerializer, PinfTopoCiviciareeSerializer, \
   PinfSostaGiallobluSerializer, \
   PinfSostaInvalidiSerializer, PinfSostaMerciSerializer, \
   PinfSostaTuristiciSerializer, PinfControlloVarchiSerializer
@@ -38,6 +39,12 @@ class PinfPermissionMixin(object):
 #     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
     permission_classes = [TokenHasScope]
     required_scopes = ['pinf']
+
+#################################################
+class PinfDisciplinaAreeViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PinfDisciplinaAreeSerializer
+    queryset = PinfDisciplinaAree.objects.all()
+    paginate_by = None
 
 #################################################
 class PinfTopoViarioViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
