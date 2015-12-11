@@ -1,9 +1,9 @@
 # coding: utf-8
-from pinf.models import PinfTopoViario, PinfControlloVarchi
+from pinf.models import PinfTopoViario, PinfControlloVarchi, PinfTopoCiviciaree
 from pinf.serializers import PinfTopoViarioSerializer, \
   PinfSostaGiallobluSerializer, PinfSostaInvalidiSerializer, \
   PinfSostaMerciSerializer, PinfSostaTuristiciSerializer, \
-  PinfControlloVarchiSerializer
+  PinfControlloVarchiSerializer, PinfTopoCiviciareeSerializer
 
 
 #################################################
@@ -24,3 +24,12 @@ class OpenTopoViarioControlloSerializer(PinfTopoViarioSerializer):
   class Meta:
     model = PinfTopoViario
     fields = PinfTopoViarioSerializer.Meta.fields + ['controllo_varchi']
+
+#################################################
+class OpenTopoCiviciareeSerializer(PinfTopoCiviciareeSerializer):
+  pass
+
+  class Meta:
+    model = PinfTopoCiviciaree
+    exclude = ['geom']        #NEVER SEND GEOMETRIES OF CIVICI (even if projected)!!!
+
