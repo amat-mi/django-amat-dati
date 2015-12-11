@@ -14,6 +14,8 @@ class PinfDisciplinaAree(models.Model):
   nome = models.CharField(max_length=80, blank=True, null=True)
   ordinanza = models.CharField(max_length=200, blank=True, null=True)
   deroghe = models.TextField(blank=True, null=True)
+  val_inizio = models.DateTimeField(blank=True, null=True)
+  val_fine = models.DateTimeField(blank=True, null=True)
   geom = geomodels.MultiPolygonField(srid=4326, null=True, blank=True)
   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
@@ -34,9 +36,13 @@ class PinfTopoViario(models.Model):
 class PinfTopoCiviciaree(models.Model):
   civico_id = models.IntegerField(primary_key=True)
   area_id = models.IntegerField(primary_key=True)
+  tipo_rel = models.IntegerField(blank=True, null=True)
+  note_rel = models.TextField(blank=True, null=True)
   tipo_area = models.CharField(max_length=80, blank=True, null=True)
   nome_area = models.CharField(max_length=80, blank=True, null=True)
   ordinanza = models.CharField(max_length=200, blank=True, null=True)
+  val_inizio = models.DateTimeField(blank=True, null=True)
+  val_fine = models.DateTimeField(blank=True, null=True)
   id_via = models.IntegerField(blank=True, null=True)
   numero = models.CharField(max_length=20, blank=True, null=True)
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
