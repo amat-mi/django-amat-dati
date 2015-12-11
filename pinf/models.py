@@ -133,6 +133,34 @@ PinfTopoViario.sosta_turistici = property(lambda t: \
   PinfSostaTuristici.objects.filter(id_via=t.id))          
     
 #################################################
+class PinfControlloPilomat(models.Model):
+  id = models.IntegerField(primary_key=True)
+  nome = models.CharField(max_length=80)
+  indirizzo = models.CharField(max_length=80)
+  id_via = models.IntegerField(blank=True, null=True)
+  accesso = models.IntegerField()
+  area_id = models.IntegerField(blank=True, null=True)
+  tipo = models.CharField(max_length=16)
+  fonia = models.CharField(max_length=40, blank=True, null=True)
+  stato = models.IntegerField()
+  note = models.TextField(blank=True, null=True)
+  val_inizio = models.DateTimeField()
+  val_fine = models.DateTimeField()
+  geom = geomodels.PointField(srid=4326, null=True, blank=True)
+  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+
+  class Meta:
+    managed = False
+    db_table = 'pinf_new_amat_controllo_pilomat'
+
+### queryset e property a PinfTopoViario
+u"""
+Aggiunge a PinfTopoViario un queryset che contiene le istanze nella stessa strada.
+"""
+PinfTopoViario.controllo_pilomat = property(lambda t: \
+  PinfControlloPilomat.objects.filter(id_via=t.id))          
+    
+#################################################
 class PinfControlloVarchi(models.Model):
   id = models.IntegerField(primary_key=True)
   tipo = models.CharField(max_length=80)

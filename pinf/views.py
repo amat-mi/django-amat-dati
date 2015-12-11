@@ -9,12 +9,13 @@ from rest_framework.response import Response
 
 from pinf.models import PinfDisciplinaAree, PinfTopoViario, PinfTopoCiviciaree, \
   PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
-  PinfSostaTuristici, PinfControlloVarchi
+  PinfSostaTuristici, PinfControlloPilomat, PinfControlloVarchi
 from pinf.serializers import PinfDisciplinaAreeSerializer, \
   PinfTopoViarioSerializer, PinfTopoCiviciareeSerializer, \
   PinfSostaGiallobluSerializer, \
   PinfSostaInvalidiSerializer, PinfSostaMerciSerializer, \
-  PinfSostaTuristiciSerializer, PinfControlloVarchiSerializer
+  PinfSostaTuristiciSerializer, \
+  PinfControlloPilomatSerializer, PinfControlloVarchiSerializer
 
 
 #################################################
@@ -80,6 +81,12 @@ class PinfSostaMerciViewSet(viewsets.ReadOnlyModelViewSet):
 class PinfSostaTuristiciViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PinfSostaTuristiciSerializer
     queryset = PinfSostaTuristici.objects.all()
+    paginate_by = None
+
+#################################################
+class PinfControlloPilomatViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
+    serializer_class = PinfControlloPilomatSerializer
+    queryset = PinfControlloPilomat.objects.all()
     paginate_by = None
 
 #################################################

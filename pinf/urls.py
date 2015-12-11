@@ -5,7 +5,8 @@ from rest_framework.routers import SimpleRouter
 
 from pinf.views import PinfDisciplinaAreeViewSet, \
   PinfTopoViarioViewSet, PinfSostaGiallobluViewSet, PinfSostaInvalidiViewSet, \
-  PinfSostaMerciViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet, \
+  PinfSostaMerciViewSet, PinfSostaTuristiciViewSet, \
+  PinfControlloPilomatViewSet, PinfControlloVarchiViewSet, \
   PinfTopoCiviciareeViewSet
 
 
@@ -22,6 +23,7 @@ router.register(r'sosta_invalidi', PinfSostaInvalidiViewSet)
 router.register(r'sosta_merci', PinfSostaMerciViewSet)
 router.register(r'sosta_turistici', PinfSostaTuristiciViewSet)
 
+router.register(r'controllo_pilomat', PinfControlloPilomatViewSet)
 router.register(r'controllo_varchi', PinfControlloVarchiViewSet)
 
 ##### Aggiunta degli url ####################################

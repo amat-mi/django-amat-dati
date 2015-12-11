@@ -5,7 +5,8 @@ from rest_framework.routers import SimpleRouter
 
 from open.views import OpenDisciplinaAreeViewSet, \
   OpenTopoViarioViewSet, OpenSostaGiallobluViewSet, OpenSostaInvalidiViewSet, \
-  OpenSostaMerciViewSet, OpenSostaTuristiciViewSet, OpenControlloVarchiViewSet
+  OpenSostaMerciViewSet, OpenSostaTuristiciViewSet, \
+  OpenControlloPilomatViewSet, OpenControlloVarchiViewSet
 
 
 router = SimpleRouter()
@@ -20,6 +21,7 @@ router.register(r'sosta_invalidi', OpenSostaInvalidiViewSet)
 router.register(r'sosta_merci', OpenSostaMerciViewSet)
 router.register(r'sosta_turistici', OpenSostaTuristiciViewSet)
 
+router.register(r'controllo_pilomat', OpenControlloPilomatViewSet)
 router.register(r'controllo_varchi', OpenControlloVarchiViewSet)
 
 ##### Aggiunta degli url ####################################

@@ -9,7 +9,8 @@ from rest_framework.throttling import UserRateThrottle
 from open.serializers import OpenTopoViarioSostaSerializer, OpenTopoViarioControlloSerializer
 from pinf.views import PinfDisciplinaAreeViewSet, \
   PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
-  PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet, PinfControlloVarchiViewSet
+  PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet, \
+  PinfControlloPilomatViewSet, PinfControlloVarchiViewSet
 
 
 #################################################
@@ -90,6 +91,12 @@ class OpenSostaMerciViewSet(ThrottledMixin,TopoSlaveFilterMixin,
 class OpenSostaTuristiciViewSet(ThrottledMixin,TopoSlaveFilterMixin,
                                 OpenPermissionMixin,
                                 PinfSostaTuristiciViewSet):
+  pass
+
+#################################################
+class OpenControlloPilomatViewSet(ThrottledMixin,TopoSlaveFilterMixin,
+                                 OpenPermissionMixin,
+                                 PinfControlloPilomatViewSet):
   pass
 
 #################################################

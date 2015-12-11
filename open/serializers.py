@@ -1,9 +1,9 @@
 # coding: utf-8
-from pinf.models import PinfTopoViario, PinfControlloVarchi, PinfTopoCiviciaree
+from pinf.models import PinfTopoViario, PinfControlloPilomat, PinfControlloVarchi, PinfTopoCiviciaree
 from pinf.serializers import PinfTopoViarioSerializer, \
   PinfSostaGiallobluSerializer, PinfSostaInvalidiSerializer, \
   PinfSostaMerciSerializer, PinfSostaTuristiciSerializer, \
-  PinfControlloVarchiSerializer, PinfTopoCiviciareeSerializer
+  PinfControlloPilomatSerializer, PinfControlloVarchiSerializer, PinfTopoCiviciareeSerializer
 
 
 #################################################
@@ -19,11 +19,12 @@ class OpenTopoViarioSostaSerializer(PinfTopoViarioSerializer):
 
 #################################################
 class OpenTopoViarioControlloSerializer(PinfTopoViarioSerializer):
+  controllo_pilomat = PinfControlloPilomatSerializer(many=True)
   controllo_varchi = PinfControlloVarchiSerializer(many=True)
 
   class Meta:
     model = PinfTopoViario
-    fields = PinfTopoViarioSerializer.Meta.fields + ['controllo_varchi']
+    fields = PinfTopoViarioSerializer.Meta.fields + ['controllo_pilomat','controllo_varchi']
 
 #################################################
 class OpenTopoCiviciareeSerializer(PinfTopoCiviciareeSerializer):
