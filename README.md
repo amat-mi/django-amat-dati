@@ -4,6 +4,20 @@ Progetto Django per il server da installare come "dati.amat-mi.it" e che raggrup
 
 # Installazione
 
+## Lxml
+
+### Windows
+
+### Ubuntu
+
+If an error arise while installing this package, try doing this:
+
+    sudo apt-get build-dep python-lxml
+    
+before the usual:
+
+    pip install lxml
+
 ## Pillow
 
 ### Windows

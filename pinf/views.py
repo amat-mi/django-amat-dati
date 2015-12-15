@@ -4,9 +4,10 @@ from django.http.response import HttpResponse, HttpResponseBadRequest
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
 from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
 from rest_framework import viewsets, permissions
-from rest_framework.decorators import authentication_classes
+from rest_framework.decorators import authentication_classes, list_route
 from rest_framework.response import Response
 
+from pinf.massive import build_excel_response
 from pinf.models import PinfDisciplinaAree, PinfTopoViario, PinfTopoCiviciaree, \
   PinfSostaGialloblu, PinfSostaInvalidi, PinfSostaMerci, \
   PinfSostaTuristici, PinfControlloPilomat, PinfControlloVarchi
@@ -16,23 +17,8 @@ from pinf.serializers import PinfDisciplinaAreeSerializer, \
   PinfSostaInvalidiSerializer, PinfSostaMerciSerializer, \
   PinfSostaTuristiciSerializer, \
   PinfControlloPilomatSerializer, PinfControlloVarchiSerializer
+from pinf.utils import build_exception_response
 
-
-#################################################
-def build_message_response(message,status=HttpResponse.status_code):
-  return Response({'message': message},status=status)
-
-#################################################
-class RESPERR(object):
-  GENERIC_ERROR = 'GENERIC_ERROR'
-
-def build_error_response(error,status=HttpResponseBadRequest.status_code,message=None):
-  return Response({'error': error, 'message': message},status=status)
-
-#################################################
-def build_exception_response(error=RESPERR.GENERIC_ERROR,status=HttpResponseBadRequest.status_code):
-    import traceback
-    return build_error_response(error,status,message=traceback.format_exc())
 
 #################################################
 class PinfPermissionMixin(object):
@@ -88,6 +74,14 @@ class PinfControlloPilomatViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelView
     serializer_class = PinfControlloPilomatSerializer
     queryset = PinfControlloPilomat.objects.all()
     paginate_by = None
+
+    @list_route(methods=['GET'])
+    def download(self, request):
+        try:
+            serializer = self.get_serializer_class()(self.get_queryset(), many=True)
+            return build_excel_response(serializer.child.fields.keys(),serializer.data,'controllo_pilomat')
+        except Exception, exc:
+            return build_exception_response()
 
 #################################################
 class PinfControlloVarchiViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelViewSet):
