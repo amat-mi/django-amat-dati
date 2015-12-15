@@ -66,13 +66,7 @@ class PinfControlloPilomatSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfControlloPilomat
-
-class MassivePinfControlloPilomatSerializer(serializers.ModelSerializer):
-  pass
-
-  class Meta:
-    model = PinfControlloPilomat
-    fields = ['*']
+    exclude = ['fonia']
 
 #################################################
 class PinfControlloVarchiSerializer(serializers.ModelSerializer):
