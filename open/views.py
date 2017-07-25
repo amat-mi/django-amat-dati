@@ -3,10 +3,12 @@
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
 from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
 from rest_framework import filters
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.throttling import UserRateThrottle
+from rest_framework_gis.filters import InBBoxFilter
 
-from open.serializers import OpenTopoViarioSostaSerializer, OpenTopoViarioControlloSerializer
+from open.serializers import OpenTopoViarioSostaSerializer, OpenTopoViarioControlloSerializer, \
+  GeoJSONOpenDisciplinaAreeSerializer
 from pinf.views import PinfDisciplinaAreeViewSet, \
   PinfTopoViarioViewSet, PinfSostaMerciViewSet, PinfSostaGiallobluViewSet, \
   PinfSostaInvalidiViewSet, PinfSostaTuristiciViewSet, \
@@ -45,6 +47,16 @@ class TopoSlaveFilterMixin(object):
     ordering_fields = ('id_via', 'dove')  
 
 #################################################
+class StandardInBBoxFilter(InBBoxFilter):
+    bbox_param = 'bbox'  # The URL query parameter which contains the bbox.
+
+#################################################
+class GeoJSONFilterMixin(object):
+    filter_backends = (StandardInBBoxFilter,)
+    bbox_filter_field = 'geom'
+    bbox_filter_include_overlapping = True
+
+#################################################
 class OpenPermissionMixin(object):
     authentication_classes = [OAuth2Authentication]
 #     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
@@ -54,8 +66,13 @@ class OpenPermissionMixin(object):
 #################################################
 class OpenDisciplinaAreeViewSet(ThrottledMixin,
                                 OpenPermissionMixin,
+                                GeoJSONFilterMixin,
                                 PinfDisciplinaAreeViewSet):
-  pass
+    
+#     @list_route(serializer_class=GeoJSONOpenDisciplinaAreeSerializer,permission_classes = [])
+    @list_route(serializer_class=GeoJSONOpenDisciplinaAreeSerializer)
+    def as_geojson(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 #################################################
 class OpenTopoViarioViewSet(ThrottledMixin,TopoMasterFilterMixin,

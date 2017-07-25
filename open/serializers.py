@@ -1,10 +1,21 @@
 # coding: utf-8
-from pinf.models import PinfTopoViario, PinfControlloPilomat, PinfControlloVarchi, PinfTopoCiviciaree
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
+
+from pinf.models import PinfTopoViario, PinfControlloPilomat, PinfControlloVarchi, PinfTopoCiviciaree, \
+  PinfDisciplinaAree
 from pinf.serializers import PinfTopoViarioSerializer, \
   PinfSostaGiallobluSerializer, PinfSostaInvalidiSerializer, \
   PinfSostaMerciSerializer, PinfSostaTuristiciSerializer, \
   PinfControlloPilomatSerializer, PinfControlloVarchiSerializer, PinfTopoCiviciareeSerializer
 
+
+#################################################
+class GeoJSONOpenDisciplinaAreeSerializer(GeoFeatureModelSerializer):
+  pass
+
+  class Meta:
+    model = PinfDisciplinaAree
+    geo_field = 'geom'
 
 #################################################
 class OpenTopoViarioSostaSerializer(PinfTopoViarioSerializer):

@@ -79,6 +79,8 @@ INSTALLED_APPS = (
      #PAOLO - Following is to use the Django REST Framework
     'rest_framework',       
     'rest_framework_swagger',
+     #PAOLO - Following is to use the Django REST Framework with GeoJSON
+     'rest_framework_gis',
      #PAOLO - Following is to implement an OAuth2 provider
     'oauth2_provider',
     #PAOLO - Following is for GeoDjango
