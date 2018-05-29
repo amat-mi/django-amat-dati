@@ -22,6 +22,24 @@ before the usual:
 
 ### Windows
 
+Se è necessario usare manage-py da linea di comando (Es: per eseguire "createsuperuser"), 
+conviene farlo dalla Git Bash.
+
+Bisogna però aggiungere davanti il comando "winpty", per esempio:
+     
+    cd /c/Users/Paolo/git/amat/django-amat-dati
+    winpty python manage.py createsuperuser
+    
+dopo aver attivato il virtualenv, usando la sintassi Linux, per esempio:
+
+    . /c/Users/Paolo/venv/django-amat-dati3/Scripts/activate
+    
+E' però prima necessario creare anche i file di puntamento alle App contenute, come per Linux, per esempio:
+
+    echo "/var/www/django/projects/atm-tweet-server/" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/tweet.pth
+
+    echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/park_server_core.pth
+ 
 ### Ubuntu
 
 To have support for JPEG, and other formats, a few dependencies must be installed BEFORE Pillow.
