@@ -44,7 +44,7 @@ urlpatterns += [
 # Format suffixes
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])
 
-urlpatterns = [
+urlpatterns += [
     url(r'^docs/', get_swagger_view(title='AMAT Dati API'))
 ]
 
