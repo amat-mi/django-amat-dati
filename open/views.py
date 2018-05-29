@@ -1,7 +1,11 @@
 # coding: utf-8
 
-from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
+from builtins import object
+
+import django_filters
+from django_filters.rest_framework.backends import DjangoFilterBackend
+from oauth2_provider.contrib.rest_framework.authentication import OAuth2Authentication
+from oauth2_provider.contrib.rest_framework.permissions import TokenHasScope
 from rest_framework import filters
 from rest_framework.decorators import detail_route
 from rest_framework.throttling import UserRateThrottle
@@ -32,14 +36,14 @@ class ThrottledMixin(object):
 
 #################################################
 class TopoMasterFilterMixin(object):
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filter_fields = ('id',)
     search_fields = ('nome',)
     ordering_fields = ('id', 'nome')  
 
 #################################################
 class TopoSlaveFilterMixin(object):
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filter_fields = ('id_via',)
     search_fields = ('dove',)
     ordering_fields = ('id_via', 'dove')  
