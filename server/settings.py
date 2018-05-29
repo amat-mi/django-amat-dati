@@ -24,8 +24,7 @@ print(u'With mnt: "{}"'.format(MNT_PATH))
 print(u'Development machine: "{}"'.format('yes' if IS_DEVELOPMENT_MACHINE else 'no'))
 print(u'Debug: "{}"'.format('yes' if DEBUG else 'no'))
 
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP, \
-  FORCE_SCRIPT_NAME
+from django.conf.global_settings import FORCE_SCRIPT_NAME
 
 #PAOLO - Ensure those cookies are only sent on secure (ie: https) connections for remote server
 #There my be other things to do though, see:
