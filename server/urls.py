@@ -10,7 +10,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 #from django.conf.urls import patterns, url, include
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 #     url(r'^docs/', include('rest_framework_swagger.urls')),
 ]
 
