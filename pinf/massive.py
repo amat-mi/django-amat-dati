@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from StringIO import StringIO
+from io import StringIO
 
 from django.http.response import HttpResponse
 from openpyxl import load_workbook
