@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from django.conf.urls import patterns, url, include
+from django.urls import re_path as url, include
 from rest_framework.routers import SimpleRouter
 
 from pinf.views import PinfDisciplinaAreeViewSet, \
@@ -27,6 +27,6 @@ router.register(r'controllo_pilomat', PinfControlloPilomatViewSet)
 router.register(r'controllo_varchi', PinfControlloVarchiViewSet)
 
 ##### Aggiunta degli url ####################################
-urlpatterns =  patterns('',
+urlpatterns =  [
     url(r'^', include(router.urls)),    
-)
+]
