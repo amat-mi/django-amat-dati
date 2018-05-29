@@ -17,7 +17,7 @@ class GMapsAdmin(admin.OSMGeoAdmin):
   map_width = 900
   map_height = 550
   g = GEOSGeometry('POINT (9.18963432972532 45.4642637335283)') # Set map center
-  g.set_srid(4326)
+  g.srid = 4326
   # see: https://code.djangoproject.com/ticket/22456  
 #   g.transform(900913)
   g.transform(3857)
