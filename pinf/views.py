@@ -1,8 +1,8 @@
 # coding: utf-8
 
 from django.http.response import HttpResponse, HttpResponseBadRequest
-from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
+from oauth2_provider.contrib.rest_framework.authentication import OAuth2Authentication
+from oauth2_provider.contrib.rest_framework.permissions import TokenHasScope
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import authentication_classes, list_route
 from rest_framework.response import Response
