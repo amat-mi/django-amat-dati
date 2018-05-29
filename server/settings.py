@@ -95,19 +95,18 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     # If you use SessionAuthenticationMiddleware, be sure it appears before OAuth2TokenMiddleware.
     # SessionAuthenticationMiddleware is NOT required for using django-oauth-toolkit.
     'oauth2_provider.middleware.OAuth2TokenMiddleware',    
-)
+]
 
 ROOT_URLCONF = 'server.urls'
 
