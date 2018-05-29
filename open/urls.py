@@ -25,6 +25,7 @@ router.register(r'controllo_pilomat', OpenControlloPilomatViewSet)
 router.register(r'controllo_varchi', OpenControlloVarchiViewSet)
 
 ##### Aggiunta degli url ####################################
+app_name = 'open'
 urlpatterns =  [
     url(r'^', include(router.urls)),    
 ]

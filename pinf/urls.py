@@ -27,6 +27,7 @@ router.register(r'controllo_pilomat', PinfControlloPilomatViewSet)
 router.register(r'controllo_varchi', PinfControlloVarchiViewSet)
 
 ##### Aggiunta degli url ####################################
+app_name = 'pinf'
 urlpatterns =  [
     url(r'^', include(router.urls)),    
 ]
