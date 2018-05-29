@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//open/admin.py=utf-8
+encoding//open/models.py=utf-8
+encoding//open/serializers.py=utf-8
+encoding//open/urls.py=utf-8
+encoding//open/views.py=utf-8
+encoding//pinf/admin.py=utf-8
+encoding//pinf/massive.py=utf-8
+encoding//pinf/models.py=utf-8
+encoding//pinf/serializers.py=utf-8
+encoding//pinf/urls.py=utf-8
+encoding//pinf/utils.py=utf-8
+encoding//pinf/views.py=utf-8
+encoding//server/settings.py=utf-8
+encoding//server/urls.py=utf-8
