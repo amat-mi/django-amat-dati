@@ -56,7 +56,7 @@ class ExcelParser(FileUploadParser):
                     data[self.style1[index]] = row[position].value if position >= 0 else None
                 res.data.append(data)
             return res          
-        except Exception, ex:
+        except Exception as ex:
             raise ParseError(str(ex))
 
 #################################################
@@ -81,5 +81,5 @@ def build_excel_response(field_names,data,filename):
         s.close()
         
         return response
-    except Exception, exc:
+    except Exception as exc:
         return build_exception_response()

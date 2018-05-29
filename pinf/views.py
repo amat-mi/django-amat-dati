@@ -80,7 +80,7 @@ class PinfControlloPilomatViewSet(PinfPermissionMixin,viewsets.ReadOnlyModelView
         try:
             serializer = self.get_serializer_class()(self.get_queryset(), many=True)
             return build_excel_response(serializer.child.fields.keys(),serializer.data,'controllo_pilomat')
-        except Exception, exc:
+        except Exception as exc:
             return build_exception_response()
 
 #################################################
