@@ -18,11 +18,11 @@ TEMPLATE_DEBUG = DEBUG
 #MNT_PATH = PROJECT_PATH.replace('/var/www/','/mnt/webdata/')
 MNT_PATH = PROJECT_PATH
 
-print u'Project: "{}"'.format(PROJECT_PATH)
-print u'Running on: "{}"'.format(RUNNING_MACHINE_NAME)
-print u'With mnt: "{}"'.format(MNT_PATH)
-print u'Development machine: "{}"'.format('yes' if IS_DEVELOPMENT_MACHINE else 'no')
-print u'Debug: "{}"'.format('yes' if DEBUG else 'no')
+print(u'Project: "{}"'.format(PROJECT_PATH))
+print(u'Running on: "{}"'.format(RUNNING_MACHINE_NAME))
+print(u'With mnt: "{}"'.format(MNT_PATH))
+print(u'Development machine: "{}"'.format('yes' if IS_DEVELOPMENT_MACHINE else 'no'))
+print(u'Debug: "{}"'.format('yes' if DEBUG else 'no'))
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP, \
   FORCE_SCRIPT_NAME
