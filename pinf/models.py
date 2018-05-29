@@ -17,7 +17,7 @@ class PinfDisciplinaAree(models.Model):
   val_inizio = models.DateTimeField(blank=True, null=True)
   val_fine = models.DateTimeField(blank=True, null=True)
   geom = geomodels.MultiPolygonField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -46,7 +46,7 @@ class PinfTopoCiviciaree(models.Model):
   id_via = models.IntegerField(blank=True, null=True)
   numero = models.CharField(max_length=20, blank=True, null=True)
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -68,7 +68,7 @@ class PinfSosta(models.Model):
 #################################################
 class PinfSostaGialloblu(PinfSosta):
   geom = geomodels.MultiLineStringField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -84,7 +84,7 @@ PinfTopoViario.sosta_gialloblu = property(lambda t: \
 #################################################
 class PinfSostaInvalidi(PinfSosta):
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -100,7 +100,7 @@ PinfTopoViario.sosta_invalidi = property(lambda t: \
 #################################################
 class PinfSostaMerci(PinfSosta):
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -119,7 +119,7 @@ class PinfSostaTuristici(PinfSosta):
   euro_h = models.DecimalField(max_digits=38, decimal_places=34, blank=True, null=True)
   note = models.CharField(max_length=80, blank=True, null=True)
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -147,7 +147,7 @@ class PinfControlloPilomat(models.Model):
   val_inizio = models.DateTimeField()
   val_fine = models.DateTimeField()
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
 
   class Meta:
     managed = False
@@ -172,7 +172,7 @@ class PinfControlloVarchi(models.Model):
   tipo_area = models.CharField(max_length=80, blank=True, null=True)
   accesso = models.NullBooleanField()
   geom = geomodels.PointField(srid=4326, null=True, blank=True)
-  objects = geomodels.GeoManager() # so we can use spatial queryset methods
+#   objects = geomodels.GeoManager() # so we can use spatial queryset methods
   
   class Meta:
     managed = False
