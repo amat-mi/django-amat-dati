@@ -73,7 +73,7 @@ Installare il tool virtualenv:
 		
 Creare virtual env per il progetto:
 	
-    virtualenv /var/www/django/venv/django-amat-dati
+    virtualenv /var/www/django/venv/django-amat-dati3
 		
 Clonare i repository necessari:
 
@@ -84,7 +84,7 @@ __ATTENZIONE!!!__ Se necessario fare git switchout sul branch opportuno!!!
 
 Attivare il virtualenv ed installare i requirements:
 
-    source /var/www/django/venv/django-amat-dati/bin/activate
+    source /var/www/django/venv/django-amat-dati3/bin/activate
     cd /var/www/django/projects/django-amat-dati
     pip install -r requirements.txt
     deactivate
@@ -94,9 +94,9 @@ di ognuna, prima di fare deactivate!!!
     
 Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere servite
 
-    echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati/lib/python2.7/site-packages/tweet.pth
+    echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati3/lib/python2.7/site-packages/tweet.pth
     
-    echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati/lib/python2.7/site-packages/park_server_core.pth
+    echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati3/lib/python2.7/site-packages/park_server_core.pth
             
 ISTRUZIONI INCOMPLETE, DA CONTINUARE!!!
 
