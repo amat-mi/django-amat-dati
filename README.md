@@ -32,13 +32,13 @@ Bisogna però aggiungere davanti il comando "winpty", per esempio:
     
 dopo aver attivato il virtualenv, usando la sintassi Linux, per esempio:
 
-    . /c/Users/Paolo/venv/django-amat-dati3/Scripts/activate
+    . /c/Users/Paolo/venv/django-amat-dati/Scripts/activate
     
 E' però prima necessario creare anche i file di puntamento alle App contenute, come per Linux, per esempio:
 
-    echo "/var/www/django/projects/atm-tweet-server/" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/tweet.pth
+    echo "/var/www/django/projects/atm-tweet-server/" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/tweet.pth
 
-    echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/park_server_core.pth
+    echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/park_server_core.pth
  
 ### Ubuntu
 
@@ -66,25 +66,48 @@ Creare directory per ospitare i progetti Django e il necessario a farli girare:
     cd /var/www/django    
     mkdir projects
     mkdir venv
-	    
+    mkdir mnt
+	  
+Installare pip per python3:
+
+    sudo apt install python3-pip
+      
+ATTENZIONE!!! Se appare un messaggio del tipo:
+
+    You are using pip version 8.1.1, however version 10.0.0 is available.
+    You should consider upgrading via the 'pip install --upgrade pip' command.
+    
+è importante __NON__ eseguire l'aggiornamento consigliato, che potrebbe corrompere il comando pip!!!    
+
+In caso di problemi, provare ad effettuare un downgrade ad una versione funzionante, per esempio:
+
+    sudo python3 -m pip install pip==9.0.1
+     
 Installare il tool virtualenv:
 		
-		TBD
+		sudo pip install virtualenv
 		
 Creare virtual env per il progetto:
 	
-    virtualenv /var/www/django/venv/django-amat-dati3
+    virtualenv /var/www/django/venv/django-amat-dati
+
+Creare directory di mount per il progetto:
+
+    mkdir -p /var/www/django/mnt/django-amat-dati
 		
 Clonare i repository necessari:
 
     cd /var/www/django/projects
     git clone https://github.com/amat-mi/django-amat-dati.git
+    git clone https://github.com/amat-mi/atm-tweet-server.git
+    git clone https://github.com/amat-mi/park_server.git
+    git clone https://github.com/amat-mi/atm-tweet-client.git
     
 __ATTENZIONE!!!__ Se necessario fare git switchout sul branch opportuno!!!
 
 Attivare il virtualenv ed installare i requirements:
 
-    source /var/www/django/venv/django-amat-dati3/bin/activate
+    . /var/www/django/venv/django-amat-dati/bin/activate
     cd /var/www/django/projects/django-amat-dati
     pip install -r requirements.txt
     deactivate
@@ -94,18 +117,38 @@ di ognuna, prima di fare deactivate!!!
     
 Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere servite
 
-    echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati3/lib/python2.7/site-packages/tweet.pth
+    echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati/lib/python3.5/site-packages/tweet.pth
     
-    echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati3/lib/python2.7/site-packages/park_server_core.pth
+    echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati/lib/python3.5/site-packages/park_server_core.pth
             
-ISTRUZIONI INCOMPLETE, DA CONTINUARE!!!
+Se non già presenti, copiare gli script di gestione Django dal repository del progetto principale
+e impostare i diritti opportuni:
 
+    cp /var/www/django/projects/django-amat-dati/docs/scripts/*.sh /var/www/django/
+    chmod ug+x /var/www/django/*.sh
+
+Preparare l'ambiente di runtime Django:
+
+    sudo /var/www/django/django-prepare.sh django-amat-dati
+              
 ## Database
 
-Se non ancora presente, creare Utente PostgreSQL "django" con le stesse credenziali usate in settings.py.
+Installare PostgreSQL con PostGIS, nelle versioni desiderate, per esempio:
 
-Creare database:
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/postgresql.list'
+    sudo apt-get update
+    sudo apt-get install postgresql-9.6-postgis-2.4
+    
+Se non ancora presente, creare Utente PostgreSQL "django" con le stesse credenziali usate in settings.py, per esempio:
 
+    sudo -u postgres psql
+    CREATE ROLE django LOGIN UNENCRYPTED PASSWORD '<PASSWORD>' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+    \q
+
+Creare database and install PostGIS extension (only if needed):
+
+    sudo -u postgres psql
     CREATE DATABASE django_amatdati
     WITH OWNER = django
         TEMPLATE = template0
@@ -114,21 +157,20 @@ Creare database:
         LC_COLLATE = 'C'
         LC_CTYPE = 'C'
         CONNECTION LIMIT = -1;
-
-If PostGIS is installed and needed, login to the newly created database and do:
-	          
+    \c django_amatdati
     CREATE EXTENSION postgis;
-       
-Creare le tabelle per South e per le altre App che non usano South stesso (solo per Django<1.7):
+    \q
 
-    python manage.py syncdb
-    
-Se viene richiesto, creare un superutente per Django, usando un indirizzo EMail vero.
+### Se non si intende ripristinare il contenuto del database da un salvataggio
 
 Applicare le migration per tutte le App:
 
-    python manage.py migrate
-    
+    /var/www/django/django-manage.sh django-amat-dati migrate
+
+Creare un superutente per Django, usando un indirizzo EMail vero:
+
+    /var/www/django/django-manage.sh django-amat-dati createsuperuser
+
 ## Apache
 
 Installare Apache:
@@ -149,6 +191,9 @@ Disabilitare il virtual host di default (a seconda della versione di Apache):
 Installare mod_wsgi:
 
     sudo apt-get install libapache2-mod-wsgi
+    sudo apt-get install libapache2-mod-wsgi-py3
+
+ATTENZIONE!!! Solo uno tra i due moduli wsgi può essere installato!!!
 
 Attivare i moduli necessari:
 
@@ -170,6 +215,10 @@ impostare i diritti opportuni:
 e attivarli:
 	
     sudo a2ensite django-amat-dati.conf
+
+Ricaricare la configurazione di Apache:
+
+    sudo service apache2 reload
 
 # Tips & Tricks
 
