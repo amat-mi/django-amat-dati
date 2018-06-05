@@ -15,8 +15,11 @@ IS_DEVELOPMENT_MACHINE = RUNNING_MACHINE_NAME in ['DELLY','DAVIDEPC','BLUEZEN']
 DEBUG = IS_DEVELOPMENT_MACHINE #or RUNNING_MACHINE_NAME in ['WEB371.WEBFACTION.COM']
 TEMPLATE_DEBUG = DEBUG
 
-#MNT_PATH = PROJECT_PATH.replace('/var/www/','/mnt/webdata/')
-MNT_PATH = PROJECT_PATH
+#PAOLO - Usa i parametri corretti a seconda dell'host su cui sta girando
+if IS_DEVELOPMENT_MACHINE:
+  MNT_PATH = PROJECT_PATH
+else:
+  MNT_PATH = os.path.abspath(os.path.join(PROJECT_PATH, '..', '..', '..', 'mnt', 'django-amat-dati'))
 
 print(u'Project: "{}"'.format(PROJECT_PATH))
 print(u'Running on: "{}"'.format(RUNNING_MACHINE_NAME))
@@ -188,11 +191,12 @@ LOCALE_PATHS = (
     os.path.abspath(os.path.join(PROJECT_PATH, 'locale')),
 )
 
-#PAOLO - Usa i parametri corretti a seconda dell'host su cui sta girando
-if IS_DEVELOPMENT_MACHINE:
-  MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-else:
-  MEDIA_ROOT = os.path.abspath(os.path.join(MNT_PATH, '..', 'media'))
+# #PAOLO - Usa i parametri corretti a seconda dell'host su cui sta girando
+# if IS_DEVELOPMENT_MACHINE:
+#   MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+# else:
+#   MEDIA_ROOT = os.path.abspath(os.path.join(MNT_PATH, '..', 'media'))
+MEDIA_ROOT = os.path.join(MNT_PATH, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -203,11 +207,12 @@ MEDIA_URL = '{}/media/'.format(FORCE_SCRIPT_NAME)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-#PAOLO - Usa i parametri corretti a seconda dell'host su cui sta girando
-if IS_DEVELOPMENT_MACHINE:
-  STATIC_ROOT = ''
-else:
-  STATIC_ROOT = os.path.abspath(os.path.join(MNT_PATH, '..', 'static'))
+# #PAOLO - Usa i parametri corretti a seconda dell'host su cui sta girando
+# if IS_DEVELOPMENT_MACHINE:
+#   STATIC_ROOT = ''
+# else:
+#   STATIC_ROOT = os.path.abspath(os.path.join(MNT_PATH, '..', 'static'))
+STATIC_ROOT = os.path.join(MNT_PATH, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
