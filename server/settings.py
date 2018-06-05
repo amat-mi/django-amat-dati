@@ -59,7 +59,7 @@ LOGIN_REDIRECT_URL = FORCE_SCRIPT_NAME + '/'          #go to Home Page after Sig
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '01$k%#yn+rb_z_+o&!p3is4y$=r__hpdnk$0xmm1zl3b4lu8s_'
 
-ALLOWED_HOSTS = ['localhost','192.168.1.49','dati.amat-mi.it']
+ALLOWED_HOSTS = ['localhost','192.168.1.49','dati.amat-mi.it','172.20.8.40']
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
