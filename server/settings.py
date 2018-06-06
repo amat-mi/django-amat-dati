@@ -227,7 +227,11 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
 #     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'pinf': 'Access to pinf APIs'}
-    'SCOPES': {'open': 'Access to open APIs', 'pinf': 'Access to pinf APIs'}
+    'SCOPES': {
+        'open': 'Access to open APIs', 
+        'pinf': 'Access to pinf APIs',
+        'tweet': 'Access to tweet APIs'
+    }
 }
 
 # Load optional local settings
