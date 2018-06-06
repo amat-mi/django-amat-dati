@@ -11,5 +11,7 @@ encoding//pinf/serializers.py=utf-8
 encoding//pinf/urls.py=utf-8
 encoding//pinf/utils.py=utf-8
 encoding//pinf/views.py=utf-8
+encoding//server/local_settings_post.py=utf-8
+encoding//server/local_settings_pre.py=utf-8
 encoding//server/settings.py=utf-8
 encoding//server/urls.py=utf-8

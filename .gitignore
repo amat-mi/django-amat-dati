@@ -5,4 +5,4 @@
 db.*
 media/
 static/
-
+**/local_settings_*.py
