@@ -13,6 +13,7 @@ class PinfDisciplinaAreeSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfDisciplinaAree
+    fields = '__all__'
 
 #################################################
 class PinfTopoViarioSerializer(serializers.ModelSerializer):
@@ -31,6 +32,7 @@ class PinfTopoCiviciareeSerializer(serializers.ModelSerializer):
     #NOOO!!! Non escludiamo il campo geometrico, perché tanto è un servizio riservato a pochi!!!
     #ATTENZIONE!!! Per una eventuale pubblicazione come "open" usare OpenTopoCiviciareeSerializer!!!
 #     exclude = ['geom']        #NEVER SEND GEOMETRIES OF CIVICI (even if projected)!!!
+    fields = '__all__'
 
 #################################################
 class PinfSostaGiallobluSerializer(serializers.ModelSerializer):
@@ -38,6 +40,7 @@ class PinfSostaGiallobluSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfSostaGialloblu
+    fields = '__all__'
 
 #################################################
 class PinfSostaInvalidiSerializer(serializers.ModelSerializer):
@@ -45,6 +48,7 @@ class PinfSostaInvalidiSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfSostaInvalidi
+    fields = '__all__'
 
 #################################################
 class PinfSostaMerciSerializer(serializers.ModelSerializer):
@@ -52,6 +56,7 @@ class PinfSostaMerciSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfSostaMerci
+    fields = '__all__'
 
 #################################################
 class PinfSostaTuristiciSerializer(serializers.ModelSerializer):
@@ -59,6 +64,7 @@ class PinfSostaTuristiciSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfSostaTuristici
+    fields = '__all__'
 
 #################################################
 class PinfControlloPilomatSerializer(serializers.ModelSerializer):
@@ -74,3 +80,4 @@ class PinfControlloVarchiSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PinfControlloVarchi
+    fields = '__all__'
