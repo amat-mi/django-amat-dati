@@ -9,7 +9,7 @@
 # Use this (modified as needed) if assets (ie: static, media, etc.) 
 # are NOT inside the project directories structure
 #import os
-#MNT_PATH = os.path.abspath(os.path.join(PROJECT_PATH, '..', '..', '..', 'mnt', 'XXXX'))
+#MNT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..', '..', 'mnt', 'XXXX'))
 
 #Do not require HTTPS for cookies only for DEV machines or while server is not under HTTPS, yet!!!
 #SESSION_COOKIE_SECURE = False
