@@ -219,6 +219,46 @@ e attivarli:
 Ricaricare la configurazione di Apache:
 
     sudo service apache2 reload
+    
+## Utenti e sistema
+
+### Server esterno per accettare dati dal server interno
+ 
+Creare uno user per l'invio dei dati dal server interno, necessariamente con una password:
+
+    sudo adduser doit
+
+__ATTENZIONE!!!__ Usare proprio __ADD__user!!!
+
+### Server interno per inviare dati al server esterno
+
+Vedere anche:
+
+    http://askubuntu.com/questions/46930/how-can-i-set-up-password-less-ssh-login
+
+Creare uno user, senza password:
+    
+    sudo /usr/sbin/useradd doit
+
+Creare la directory home per il nuovo utente (vedere anche: http://serverfault.com/questions/63764/create-home-directories-after-create-users):
+
+    sudo /sbin/mkhomedir_helper doit
+
+Impersonare l'utente appena creato:
+
+    sudo su doit
+
+Creare chiavi pubblica/privata (senza passphrase):
+
+    ssh-keygen
+
+Copiare la chiave pubblica sul server esterno (richiede la password sul server esterno):
+
+    ssh-copy-id doit@<server_esterno>
+
+Uscire dall'utente doit:
+
+    exit
 
 # Tips & Tricks
 
