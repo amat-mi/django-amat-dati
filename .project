@@ -5,6 +5,7 @@
 	<projects>
 		<project>atm-tweet-server</project>
 		<project>park_server</project>
+		<project>qaria</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -33,6 +33,10 @@ urlpatterns += [
 ]
 
 urlpatterns += [
+    url(r'^qaria/', include('qaria.urls', namespace='qaria')),
+]
+
+urlpatterns += [
     url(r'^pinf/', include('pinf.urls', namespace='pinf')),
 ]
 
