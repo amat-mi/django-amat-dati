@@ -40,6 +40,8 @@ E' però prima necessario creare anche i file di puntamento alle App contenute, c
 
     echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/park_server_core.pth
  
+    echo "C:\Users\Paolo\git\AMAT\QAria" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/qaria.pth
+ 
 ### Ubuntu
 
 To have support for JPEG, and other formats, a few dependencies must be installed BEFORE Pillow.
@@ -102,6 +104,7 @@ Clonare i repository necessari:
     git clone https://github.com/amat-mi/atm-tweet-server.git
     git clone https://github.com/amat-mi/park_server.git
     git clone https://github.com/amat-mi/atm-tweet-client.git
+    git clone https://github.com/amat-mi/QAria.git
     
 __ATTENZIONE!!!__ Se necessario fare git switchout sul branch opportuno!!!
 
@@ -120,6 +123,8 @@ Aggiungere nel virtualenv i file di puntamento alle App che dovranno essere serv
     echo "/var/www/django/projects/atm-tweet-server/" > /var/www/django/venv/django-amat-dati/lib/python3.5/site-packages/tweet.pth
     
     echo "/var/www/django/projects/park_server/" > /var/www/django/venv/django-amat-dati/lib/python3.5/site-packages/park_server_core.pth
+            
+    echo "/var/www/django/projects/QAria/" > /var/www/django/venv/django-amat-dati/lib/python3.5/site-packages/qaria.pth
             
 Se non già presenti, copiare gli script di gestione Django dal repository del progetto principale
 e impostare i diritti opportuni:
