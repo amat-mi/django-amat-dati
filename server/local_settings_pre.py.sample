@@ -18,3 +18,8 @@
 #####################################################
 # Add here any additional or override settings needed
 #####################################################
+
+##########
+# Support for downloading QAria files from the FTP server's directory.
+##########
+RGQA_ROOT = '/var/ftpdir/qariaftp/rgqa/'
