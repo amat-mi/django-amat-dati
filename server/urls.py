@@ -33,7 +33,7 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'^qaria/', include('qaria.urls', namespace='qaria')),
+    url(r'^bollettinoqa/', include('qaria.urls', namespace='qaria')),
 ]
 
 urlpatterns += [
