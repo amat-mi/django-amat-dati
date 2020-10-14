@@ -4,6 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>atm-tweet-server</project>
+		<project>mds-provider</project>
+		<project>mobishare</project>
 		<project>park_server</project>
 		<project>qaria</project>
 	</projects>

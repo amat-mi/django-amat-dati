@@ -27,20 +27,22 @@ conviene farlo dalla Git Bash.
 
 Bisogna però aggiungere davanti il comando "winpty", per esempio:
      
-    cd /c/Users/Paolo/git/amat/django-amat-dati
+    cd /c/Users/Paolo/git/AMAT/django-amat-dati3
     winpty python manage.py createsuperuser
     
 dopo aver attivato il virtualenv, usando la sintassi Linux, per esempio:
 
-    . /c/Users/Paolo/venv/django-amat-dati/Scripts/activate
+    . /c/Users/Paolo/venv/django-amat-dati3/Scripts/activate
     
 E' però prima necessario creare anche i file di puntamento alle App contenute, come per Linux, per esempio:
 
-    echo "/var/www/django/projects/atm-tweet-server/" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/tweet.pth
+    echo "/var/www/django/projects/atm-tweet-server/" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/tweet.pth
 
-    echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/park_server_core.pth
+    echo "C:\Users\Paolo\git\AMAT\park_server" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/park_server_core.pth
  
-    echo "C:\Users\Paolo\git\AMAT\QAria" > /c/Users/Paolo/venv/django-amat-dati/Lib/site-packages/qaria.pth
+    echo "C:\Users\Paolo\git\AMAT\QAria" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/qaria.pth
+ 
+    echo "C:\Users\Paolo\git\AMAT\mobishare" > /c/Users/Paolo/venv/django-amat-dati3/Lib/site-packages/mobishare.pth
  
 ### Ubuntu
 

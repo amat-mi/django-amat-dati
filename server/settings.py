@@ -94,7 +94,8 @@ INSTALLED_APPS = (
     'park_server_core',
     'pinf',
     'open',
-    'qaria'
+    'qaria',
+    'mobishare'
 )
 
 AUTHENTICATION_BACKENDS = (
