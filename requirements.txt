@@ -1,5 +1,5 @@
 # Questi sono di base per tutti
-Django==2.0.5
+Django==2.2.13
 psycopg2==2.7.4
 djangorestframework==3.8.2
 django-filter==1.1.0
